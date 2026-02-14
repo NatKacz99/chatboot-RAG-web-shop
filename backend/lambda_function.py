@@ -13,7 +13,9 @@ def embed_text(text: str) -> list:
             "inputText": text
         })
     )
-    return json.load(response["body"].read())["embedding"]
+    body_bytes = response["body"].read()
+    response_data = json.loads(body_bytes)
+    return response_data["embedding"]
 
 def cosine_similarity(vector1, vector2):
     """Calculates the cosine similarity between two vectors"""
@@ -66,7 +68,7 @@ def generate_response_with_claude(question: str, docs: list) -> str:
     response = bedrock.invoke_model(
         modelId="anthropic.claude-3-haiku-20240307-v1:0",
         body=json.dumps({
-            "anthropic_version": "bedrock-2025-05-31",
+            "anthropic_version": "bedrock-2023-05-31",
             "max_tokens": 1000,
             "messages": [
                 {
@@ -78,7 +80,8 @@ def generate_response_with_claude(question: str, docs: list) -> str:
         })
     )
 
-    response_body = json.loads(response['body'].read())
+    body_bytes = response['body'].read()
+    response_body = json.loads(body_bytes)
     return response_body['content'][0]['text']
 
 def lambda_handler(event, context):
@@ -90,6 +93,17 @@ def lambda_handler(event, context):
     2) docs = vector_db.search(question_embedding)
     3) answer = generate_response_with_claude(question, docs)
     """
+
+    if event.get('requestContext', {}).get('http', {}).get('method') == 'OPTIONS':
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            },
+            'body': ''
+        }
 
     try: 
         body = json.loads(event.get('body', '{}'))

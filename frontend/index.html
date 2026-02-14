@@ -192,12 +192,60 @@
         <p class="footer-bottom">&copy; 2026 NeoGadżet Sp. z o.o. Wszelkie prawa zastrzeżone.</p>
     </footer>
 
-        <!-- Stopka -->
+    <!-- CHATBOT RAG -->
+
+    <!-- Przycisk otwierający czat -->
+     <button id="chat-toggle" class="chat-toggle">
+        <i class="fas fa-comments"></i>
+     </button>
+
+    <!-- Okno czatu -->
+    <div id="chat-widget" class="chat-widget">
+        <!-- Nagłówek -->
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chat-title">
+                    <h4>Asystent sklepu</h4>
+                    <div class="chat-status">
+                        <span class="status-dot online"></span>
+                        <span>Online</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-header-actions">
+                <button id="chat-close" class="chat-action-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="chat-messages" class="chat-messages">
+
+        </div>
+
+        <div class="chat-input-container">
+            <form id="chat-form" class="chat-form">
+                <input
+                    type="text"
+                    id="chat-input"
+                    class="chat-input"
+                    placeholder="Wpisz wiadomość..."
+                />
+                <button type="submit" class="chat-send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+
         <div class="chat-footer">
-            <span>Asystent AI • <a href="#">pomoc@neogadzet.example</a></span>
+            Aystent AI • Powered by AWS Bedrock & Claude Haiku
         </div>
     </div>
 
+    <script src="chatbot_lambda.js"></script>
 
 </body>
 </html>
