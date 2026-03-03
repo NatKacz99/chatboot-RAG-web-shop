@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function startChatbot() {
+    updateSendButtonState();
     const chatToggle = document.getElementById('chat-toggle');
     const chatWidget = document.getElementById('chat-widget');
     const chatClose = document.getElementById('chat-close');
@@ -49,6 +50,7 @@ function startChatbot() {
         addUserMessage(message);
         
         chatInput.value = '';
+        updateSendButtonState();
 
         showTyping();
 
@@ -84,7 +86,7 @@ function startChatbot() {
     }
 
     function addUserMessage(text) {
-        const messageDiv = document.createElement('div')
+        const messageDiv = document.createElement('div');
         messageDiv.className = 'message user-message';
 
         const contentDiv = document.createElement('div');
@@ -120,7 +122,7 @@ function startChatbot() {
 
         const dotsDiv = document.createElement('div');
         dotsDiv.className = 'typing-indicator';
-        dotsDiv.innerHtml = '<span></span><span></span><span></span>';
+        dotsDiv.innerHTML = '<span></span><span></span><span></span>';
 
         typingDiv.appendChild(dotsDiv);
         chatMessages.appendChild(typingDiv)
@@ -134,6 +136,13 @@ function startChatbot() {
             typingIndicator.remove()
         }
     }
+
+    function updateSendButtonState() {
+        const sendingButton = document.querySelector('.chat-send-btn');
+        sendingButton.disabled = chatInput.value.trim() === "";
+    }
+
+    chatInput.addEventListener('input', updateSendButtonState);
 
     function scrollDown() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
