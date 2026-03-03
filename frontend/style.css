@@ -700,30 +700,6 @@ body {
     box-shadow: var(--shadow);
 }
 
-.system-message .message-content {
-    background: #e0e7ff;
-    color: var(--primary-dark);
-    text-align: center;
-    border-radius: var(--radius);
-}
-
-.message-hint {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    margin-top: 0.5rem;
-}
-
-.message-time {
-    font-size: 0.7rem;
-    color: var(--text-light);
-    margin-top: 0.25rem;
-    text-align: right;
-}
-
-.assistant-message .message-time {
-    text-align: left;
-}
-
 /* Wskaźnik pisania */
 .typing-indicator {
     display: flex;
@@ -750,35 +726,6 @@ body {
 @keyframes typing {
     0%, 100% { transform: translateY(0); opacity: 0.4; }
     50% { transform: translateY(-4px); opacity: 1; }
-}
-
-/* Sugerowane pytania */
-.chat-suggestions {
-    padding: 0.75rem 1rem;
-    display: flex;
-    gap: 0.5rem;
-    overflow-x: auto;
-    background: #f8fafc;
-    border-top: 1px solid var(--border);
-    scrollbar-width: thin;
-}
-
-.suggestion-btn {
-    padding: 0.5rem 1rem;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: var(--text);
-    cursor: pointer;
-    transition: var(--transition);
-    white-space: nowrap;
-}
-
-.suggestion-btn:hover {
-    background: var(--primary);
-    color: var(--white);
-    border-color: var(--primary);
 }
 
 /* Input */
