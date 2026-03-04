@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function startChatbot() {
+    const chatInput = document.getElementById('chat-input');
     updateSendButtonState();
     const chatToggle = document.getElementById('chat-toggle');
     const chatWidget = document.getElementById('chat-widget');
     const chatClose = document.getElementById('chat-close');
     const chatForm = document.getElementById('chat-form');
-    const chatInput = document.getElementById('chat-input');
     const chatMessages = document.getElementById('chat-messages');
     
     addBotMessage('Cześć! 👋 Jestem asystentem sklepu. Jak mogę Ci pomóc?');
